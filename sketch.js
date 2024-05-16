@@ -21,8 +21,8 @@ let moving_sound
 //let level2 = [1, 2, 3, 4]
 
 let UI
-let image_x
-let image_y
+let image_x = 6400
+let image_y = 3550
 let x = 1280
 let y = 710
 let config = 710 * 6
@@ -52,7 +52,6 @@ function setup(){
 
   createCanvas(1280, 710) 
   background(220)
-  //image(images['F61'], 0, 0)
 
   connection = mqtt.connect("wss://mqtt.nextservices.dk")     
   connection.on("connect", (m) => {})     
