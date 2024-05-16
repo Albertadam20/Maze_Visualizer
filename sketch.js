@@ -14,6 +14,10 @@ let adj_right = 0
 let returning
 let death_screen, start_screen
 let moving_sound
+let theme_music
+let light_bulb = 0 
+let time_tick = 0
+let time_tick_counter = 0
 
 //let images = {}
 //let letters = ['A','B', 'C', 'D', 'E', 'F']
@@ -30,6 +34,8 @@ let config = 710 * 6
 
 function preload(){
 
+light_bulb = loadSound ("Sounds/light_bulb.mp3")
+theme_music = loadSound ("sounds/theme.mp3")
 moving_sound = loadSound("Sounds/moving.mp3")
 
   death_screen = loadImage("UI/death_screen.png")
@@ -47,8 +53,12 @@ moving_sound = loadSound("Sounds/moving.mp3")
   //})
   //console.log(images)
 }
-function setup(){              
-  setInterval(timer, 1000)
+function setup(){   
+  
+  theme_music.setVolume(0.3)
+  theme_music.loop()
+
+  setInterval(timer, 1045)
 
   createCanvas(1280, 710) 
   background(220)
@@ -59,7 +69,7 @@ function setup(){
   connection.publish('maze_state', 'start')
   //connection.publish('maze_id', 'F6')                               
   connection.publish('maze_config', '1') 
-  connection.publish('maze_timer', '1') 
+  connection.publish('maze_timer', '0') 
   connection.publish("center","160")
   connection.publish('adj_up',"141")
   connection.publish('adj_down',"0")
@@ -140,16 +150,32 @@ function timer(){
   if (maze_ON_OFF == "ON") {
     if(maze_timer >= 60 * 3){ 
       maze_state = 'dead'
+      time = 0
+      time_tick = 0
+      time_tick_counter = 0
       connection.publish('maze_state', 'dead') 
       connection.publish('maze_timer', '0')    
     }  
     if(maze_state !== "tile" && maze_state !== "checkpoint") {
       maze_timer = 0
       time = 0
+      time_tick = 0
+      time_tick_counter = 0
       connection.publish('maze_timer', '0') 
     }
     // console.log("time: " + maze_timer)
-    connection.publish('maze_timer', maze_timer.toString())
+    time_tick = time_tick + 1
+    
+    if (time_tick == 6){
+      time_tick = 0
+      time_tick_counter = time_tick_counter + 1
+      connection.publish ("maze_timer", time_tick_counter.toString())
+      light_bulb.setVolume (0.5)
+      light_bulb.play()
+      console.log(time_tick_counter)
+
+    }
+    
     maze_timer = time + 1
     time = maze_timer
 
