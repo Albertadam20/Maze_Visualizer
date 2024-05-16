@@ -96,7 +96,9 @@ function setup(){
 
       image_x = parseInt(maze_id.charAt(1)) * x - 1280 
       image_y = (parseInt((maze_id.charCodeAt(0) - 64 )* y - 710)) + ((config * maze_config) - 710 * 6)
-      image (UI, image_x, image_y)
+      image (UI, -image_x, -image_y)
+
+      console.log("x= " + image_x + " y= " + image_y)
 
 
       if (maze_ON_OFF == "ON"){
@@ -438,6 +440,6 @@ function draw(){
    image(start_screen, 0, 0, 1280, 710)
   }
   else{
-   image(images[maze_id + maze_config], 0, 0, 1280, 710)
+   image(UI, -image_x, -image_y)
   }
 }
