@@ -6,7 +6,6 @@ let maze_state = "start"
 let maze_timer = 0                                            
 let time = 0                                              
 let maze_ON_OFF = "OFF"  
-let test
 let center = 160
 let adj_up = 141
 let adj_down = 0
