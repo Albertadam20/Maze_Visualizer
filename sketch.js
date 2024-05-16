@@ -18,6 +18,7 @@ let theme_music
 let light_bulb = 0 
 let time_tick = 0
 let time_tick_counter = 0
+let light_bulb_2
 
 //let images = {}
 //let letters = ['A','B', 'C', 'D', 'E', 'F']
@@ -34,6 +35,7 @@ let config = 710 * 6
 
 function preload(){
 
+light_bulb_2 = loadSound ("Sounds/light_bulb_2.mp3")
 light_bulb = loadSound ("Sounds/light_bulb.mp3")
 theme_music = loadSound ("sounds/theme.mp3")
 moving_sound = loadSound("Sounds/moving.mp3")
@@ -81,8 +83,15 @@ function setup(){
   connection.subscribe("maze_config")                         
   connection.subscribe("maze_id")                              
   connection.subscribe("maze_state")
+  connection.subscribe("light_bulb_2")
   
-  connection.on("message", (topic, ms) => {   
+  connection.on("message", (topic, ms) => {  
+    
+    if(topic == "light_bulb_2"){
+      light_bulb_2.setVolume(0.3)
+      light_bulb_2.play()
+
+    }
     
     if(topic == "maze_ON_OFF"){                                
       maze_ON_OFF = ms   
