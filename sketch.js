@@ -11,41 +11,48 @@ let adj_up = 141
 let adj_down = 0
 let adj_left = 164
 let adj_right = 0
-let font1
-let img
 let returning
 let death_screen, start_screen
 let moving_sound
 
-let images = {}
-let letters = ['A','B', 'C', 'D', 'E', 'F']
-let level1 = [1, 2, 3, 4, 5, 6]
-let level2 = [1, 2, 3, 4]
+//let images = {}
+//let letters = ['A','B', 'C', 'D', 'E', 'F']
+//let level1 = [1, 2, 3, 4, 5, 6]
+//let level2 = [1, 2, 3, 4]
+
+let UI
+let image_x
+let image_y
+let x = 1280
+let y = 710
+let config = 710 * 6
+
 
 function preload(){
-  font1 = loadFont("fonts/Eina01.ttf")
 
 moving_sound = loadSound("Sounds/moving.mp3")
 
   death_screen = loadImage("UI/death_screen.png")
   start_screen = loadImage("UI/start_screen.png")
 
-  letters.map( letter => {
-    level1.map( level1 => {
-      level2.map(level2 => {
-        let objName = letter + level1 + level2
-          images[objName] = loadImage('UI/' + objName + '.jpg')
-      })
-    })
-  })
-  console.log(images)
+  UI = imageLoad ("UI/Maze_id_UI.jpg")
+
+  //letters.map( letter => {
+    //level1.map( level1 => {
+      //level2.map(level2 => {
+        //let objName = letter + level1 + level2
+          //images[objName] = loadImage('UI/' + objName + '.jpg')
+      //})
+    //})
+  //})
+  //console.log(images)
 }
 function setup(){              
   setInterval(timer, 1000)
 
   createCanvas(1280, 710) 
   background(220)
-  image(images['F61'], 0, 0)
+  //image(images['F61'], 0, 0)
 
   connection = mqtt.connect("wss://mqtt.nextservices.dk")     
   connection.on("connect", (m) => {})     
@@ -85,7 +92,12 @@ function setup(){
     if(topic == "maze_id"){
       maze_id = ms.toString()
       adjecent_tiles()
-      image(images[maze_id + maze_config], 0, 0, 1280, 710)
+      //image(images[maze_id + maze_config], 0, 0, 1280, 710)
+
+      image_x = parseInt(maze_id.charAt(1)) * x - 1280 
+      image_y = (parseInt((maze_id.charCodeAt(0) - 64 )* y - 710)) + ((config * maze_config) - 710 * 6)
+      image (UI, image_x, image_y)
+
 
       if (maze_ON_OFF == "ON"){
         moving_sound.setVolume(0.5)
