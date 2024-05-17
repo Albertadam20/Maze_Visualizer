@@ -14,7 +14,7 @@ let adj_right = 0
 let returning
 let death_screen, start_screen
 let moving_sound
-let theme_music
+let theme_music, in_game_music
 let light_bulb = 0 
 let time_tick = 0
 let time_tick_counter = 0
@@ -48,6 +48,7 @@ winning_dialog = loadSound ("Sounds/winning_dialog.mp3")
 light_bulb_2 = loadSound ("Sounds/light_bulb_2.mp3")
 light_bulb = loadSound ("Sounds/light_bulb.mp3")
 theme_music = loadSound ("sounds/theme.mp3")
+in_game_music = loadSound ("Sounds/in_game_music")
 moving_sound = loadSound("Sounds/moving.mp3")
 
   death_screen = loadImage("UI/death_screen.png")
@@ -66,9 +67,6 @@ moving_sound = loadSound("Sounds/moving.mp3")
   //console.log(images)
 }
 function setup(){   
-  
-  theme_music.setVolume(0.3)
-  theme_music.loop()
 
   setInterval(timer, 1045)
 
@@ -517,4 +515,14 @@ function draw(){
   else{
    image(UI, -image_x, -image_y)
   }
+
+  if (maze_ON_OFF == "OFF" || maze_state == "return"){
+    theme_music.setVolume(0.3)
+    theme_music.loop()
+  }else{
+    in_game_music.setVolume(0.3)
+    in_game_music.loop() 
+  }
+
+
 }
