@@ -51,7 +51,7 @@ moving_sound = loadSound("Sounds/moving.mp3")
   death_screen = loadImage("UI/death_screen.png")
   start_screen = loadImage("UI/start_screen.png")
 
-  UI = loadImage ("UI/Maze_id_UI_config_1.jpg")
+  UI = loadImage ("UI/Maze_id_UI_config_1_row_6.jpg")
 
 }
 function setup(){   
@@ -123,7 +123,7 @@ function setup(){
 
       image_x = parseInt(maze_id.charAt(1)) * x - 1280 
       image_y = (parseInt((maze_id.charCodeAt(0) - 64 )* y - 710)) + ((config * maze_config) - 710 * 6)
-      image (UI, -image_x, -image_y)
+      image (UI, -image_x + (1280 * 5), -image_y)
 
       console.log("x= " + image_x + " y= " + image_y)
 
