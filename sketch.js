@@ -48,7 +48,7 @@ winning_dialog = loadSound ("Sounds/winning_dialog.mp3")
 light_bulb_2 = loadSound ("Sounds/light_bulb_2.mp3")
 light_bulb = loadSound ("Sounds/light_bulb.mp3")
 theme_music = loadSound ("sounds/theme.mp3")
-in_game_music = loadSound ("Sounds/in_game_music")
+in_game_music = loadSound ("Sounds/in_game_music.mp3")
 moving_sound = loadSound("Sounds/moving.mp3")
 
   death_screen = loadImage("UI/death_screen.png")
