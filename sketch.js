@@ -563,7 +563,7 @@ function draw(){
     }
   }
   else if (maze_state == "start" || maze_ON_OFF == "OFF"){
-   image(start_screen, 0, 0, 1280, 710)
+   //image(start_screen, 0, 0, 1280, 710)
   }
   else{
    image(UI, -image_x, -image_y)
