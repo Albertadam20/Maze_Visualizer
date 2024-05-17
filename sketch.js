@@ -51,7 +51,7 @@ moving_sound = loadSound("Sounds/moving.mp3")
   death_screen = loadImage("UI/death_screen.png")
   start_screen = loadImage("UI/start_screen.png")
 
-  UI = loadImage ("UI/Maze_id_UI_low_rez.jpg")
+  UI = loadImage ("UI/Maze_id_UI_config_1.jpg")
 
 }
 function setup(){   
