@@ -47,7 +47,7 @@ winning_dialog = loadSound ("Sounds/winning_dialog.mp3")
 
 light_bulb_2 = loadSound ("Sounds/light_bulb_2.mp3")
 light_bulb = loadSound ("Sounds/light_bulb.mp3")
-theme_music = loadSound ("sounds/theme.mp3")
+theme_music = loadSound ("Sounds/theme.mp3")
 in_game_music = loadSound ("Sounds/in_game_music.mp3")
 moving_sound = loadSound("Sounds/moving.mp3")
 
@@ -517,12 +517,17 @@ function draw(){
   }
 
   if (maze_ON_OFF == "OFF" || maze_state == "return"){
+    if (!theme_music.isPlaying()){
     theme_music.setVolume(0.3)
     theme_music.loop()
+    }
   }else{
+    if (!in_game_music.isPlaying()){
     in_game_music.setVolume(0.3)
     in_game_music.loop() 
+    }
   }
+
 
 
 }
