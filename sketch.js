@@ -111,6 +111,12 @@ function setup(){
         if(!start_dialog.isPlaying()){
           start_dialog.setVolume(0.8)
           start_dialog.play()
+
+          cheating_dialog.pause()
+          dead_dialog.pause()
+          reminder_dialog.pause()
+          wall_dialog.pause()
+          winning_dialog.puase()
         }
 
       } 
@@ -149,17 +155,46 @@ function setup(){
         if(!cheating_dialog.isPlaying()){
         cheating_dialog.setVolume(0.8)
         cheating_dialog.play()
+
+        dead_dialog.pause()
+        reminder_dialog.pause()
+        start_dialog.pause()
+        wall_dialog.pause()
+        winning_dialog.puase()
         }
       }else if(maze_state == "return" && dead_by_time == true){
         if(!dead_dialog.isPlaying()){
         dead_dialog.setVolume(0.8)
         dead_dialog.play()
+
+        cheating_dialog.pause()
+        reminder_dialog.pause()
+        start_dialog.pause()
+        wall_dialog.pause()
+        winning_dialog.puase()
         }
       }else if(maze_state == "return"){
         if(!wall_dialog.isPlaying()){
         wall_dialog.setVolume(0.8)
         wall_dialog.play()
+
+        cheating_dialog.pause()
+        dead_dialog.pause()
+        reminder_dialog.pause()
+        start_dialog.pause()
+        winning_dialog.puase()
         }
+      }
+
+      if (maze_state == "finnished"){
+        winning_dialog.setVolume(0.8)
+        winning_dialog.play()
+
+        cheating_dialog.pause()
+        dead_dialog.pause()
+        reminder_dialog.pause()
+        start_dialog.pause()
+        wall_dialog.pause()
       }
 
       switch (maze_state){
@@ -223,6 +258,12 @@ function timer(){
         if(!reminder_dialog.isPlaying()){
         reminder_dialog.setVolume(0.8)
         reminder_dialog.play()
+
+        cheating_dialog.pause()
+        dead_dialog.pause()
+        start_dialog.pause()
+        wall_dialog.pause()
+        winning_dialog.puase()
         }
       }
 
