@@ -56,17 +56,8 @@ moving_sound = loadSound("Sounds/moving.mp3")
   death_screen = loadImage("UI/death_screen.png")
   start_screen = loadImage("UI/start_screen.png")
 
-  UI = loadImage ("UI/Maze_id_UI.jpg")
+  UI = loadImage ("UI/Maze_id_UI_low_rez.jpg")
 
-  //letters.map( letter => {
-    //level1.map( level1 => {
-      //level2.map(level2 => {
-        //let objName = letter + level1 + level2
-          //images[objName] = loadImage('UI/' + objName + '.jpg')
-      //})
-    //})
-  //})
-  //console.log(images)
 }
 function setup(){   
 
@@ -78,8 +69,7 @@ function setup(){
   connection = mqtt.connect("wss://mqtt.nextservices.dk")     
   connection.on("connect", (m) => {})     
   
-  connection.publish('maze_state', 'start')
-  //connection.publish('maze_id', 'F6')                               
+  connection.publish('maze_state', 'start')                              
   connection.publish('maze_config', '1') 
   connection.publish('maze_timer', '0') 
   connection.publish("center","160")
@@ -134,7 +124,6 @@ function setup(){
     if(topic == "maze_id"){
       maze_id = ms.toString()
       adjecent_tiles()
-      //image(images[maze_id + maze_config], 0, 0, 1280, 710)
 
       image_x = parseInt(maze_id.charAt(1)) * x - 1280 
       image_y = (parseInt((maze_id.charCodeAt(0) - 64 )* y - 710)) + ((config * maze_config) - 710 * 6)
@@ -204,32 +193,8 @@ function setup(){
         wall_dialog.pause()
       }
 
-      switch (maze_state){
-        case 'dead':
-          console.log('dead')
-          returning = 'dead'
-          break;
-        case 'wall':
-          console.log('wall')
-          returning = 'wall'
-          break;
-        case 'checkpoint':
-          console.log('checkpoint')
-          break;
-        case 'finnished':
-          console.log('finnished')
-          break;
-        case 'return':
-          if (returning == 'dead'){   
-          }
-          else if (returning == 'wall'){
-          }
-          break;
-        case 'tile':
-          break;
-        }  
-      }                                                       
-    })                                                      
+    }                                                       
+  })                                                      
 }                                                              
 function timer(){
   if (maze_ON_OFF == "ON") {
@@ -250,7 +215,7 @@ function timer(){
       time_tick_counter = 0
       connection.publish('maze_timer', '0') 
     }
-    // console.log("time: " + maze_timer)
+
     time_tick = time_tick + 1
     
     if (time_tick == 6){
@@ -547,16 +512,11 @@ function adjecent_tiles(){
 
     if(maze_state !== "return"){
       if ((maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) || maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) - 1 || maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) + 1) && ( parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) || parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) - 1 || parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) + 1) && !((maze_id.charCodeAt(0) !== old_maze_id.charCodeAt(0)) && parseInt(maze_id.charAt(1)) !== parseInt(old_maze_id.charAt(1)))){
-        //console.log("not cheating!") 
+ 
       }else{
         cheating = true
         console.log("cheating!")
         connection.publish("maze_state", "dead")
-
-        if (!cheating_dialog.isPlaying()){
-        //cheating_dialog.setVolume(0.8)
-        //cheating_dialog.play()
-        }
       }
      }
      old_maze_id = maze_id
@@ -589,7 +549,5 @@ function draw(){
     in_game_music.loop() 
     }
   }
-
-
 
 }
