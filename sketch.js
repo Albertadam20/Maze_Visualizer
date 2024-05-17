@@ -24,11 +24,6 @@ let cheating = false
 let dead_by_time = false
 let death_sound
 
-//let images = {}
-//let letters = ['A','B', 'C', 'D', 'E', 'F']
-//let level1 = [1, 2, 3, 4, 5, 6]
-//let level2 = [1, 2, 3, 4]
-
 let UI
 let image_x = 6400
 let image_y = 3550
@@ -104,11 +99,11 @@ function setup(){
           start_dialog.setVolume(0.8)
           start_dialog.play()
 
-          cheating_dialog.pause()
-          dead_dialog.pause()
-          reminder_dialog.pause()
-          wall_dialog.pause()
-          winning_dialog.pause()
+          cheating_dialog.stop()
+          dead_dialog.stop()
+          reminder_dialog.stop()
+          wall_dialog.stop()
+          winning_dialog.stop()
         }
 
       } 
@@ -124,6 +119,7 @@ function setup(){
     if(topic == "maze_id"){
       maze_id = ms.toString()
       adjecent_tiles()
+
 
       image_x = parseInt(maze_id.charAt(1)) * x - 1280 
       image_y = (parseInt((maze_id.charCodeAt(0) - 64 )* y - 710)) + ((config * maze_config) - 710 * 6)
@@ -152,33 +148,33 @@ function setup(){
         cheating_dialog.setVolume(0.8)
         cheating_dialog.play()
 
-        dead_dialog.pause()
-        reminder_dialog.pause()
-        start_dialog.pause()
-        wall_dialog.pause()
-        winning_dialog.pause()
+        dead_dialog.stop()
+        reminder_dialog.stop()
+        start_dialog.stop()
+        wall_dialog.stop()
+        winning_dialog.stop()
         }
       }else if(maze_state == "return" && dead_by_time == true){
         if(!dead_dialog.isPlaying()){
         dead_dialog.setVolume(0.8)
         dead_dialog.play()
 
-        cheating_dialog.pause()
-        reminder_dialog.pause()
-        start_dialog.pause()
-        wall_dialog.pause()
-        winning_dialog.pause()
+        cheating_dialog.stop()
+        reminder_dialog.stop()
+        start_dialog.stop()
+        wall_dialog.stop()
+        winning_dialog.stop()
         }
       }else if(maze_state == "return"){
         if(!wall_dialog.isPlaying()){
         wall_dialog.setVolume(0.8)
         wall_dialog.play()
 
-        cheating_dialog.pause()
-        dead_dialog.pause()
-        reminder_dialog.pause()
-        start_dialog.pause()
-        winning_dialog.pause()
+        cheating_dialog.stop()
+        dead_dialog.stop()
+        reminder_dialog.stop()
+        start_dialog.stop()
+        winning_dialog.stop()
         }
       }
 
@@ -186,13 +182,14 @@ function setup(){
         winning_dialog.setVolume(0.8)
         winning_dialog.play()
 
-        cheating_dialog.pause()
-        dead_dialog.pause()
-        reminder_dialog.pause()
-        start_dialog.pause()
-        wall_dialog.pause()
+        cheating_dialog.stop()
+        dead_dialog.stop()
+        reminder_dialog.stop()
+        start_dialog.stop()
+        wall_dialog.stop()
       }
 
+      
     }                                                       
   })                                                      
 }                                                              
@@ -215,7 +212,7 @@ function timer(){
       time_tick_counter = 0
       connection.publish('maze_timer', '0') 
     }
-
+    
     time_tick = time_tick + 1
     
     if (time_tick == 6){
@@ -231,11 +228,11 @@ function timer(){
         reminder_dialog.setVolume(0.8)
         reminder_dialog.play()
 
-        cheating_dialog.pause()
-        dead_dialog.pause()
-        start_dialog.pause()
-        wall_dialog.pause()
-        winning_dialog.pause()
+        cheating_dialog.stop()
+        dead_dialog.stop()
+        start_dialog.stop()
+        wall_dialog.stop()
+        winning_dialog.stop()
         }
       }
 
@@ -512,11 +509,12 @@ function adjecent_tiles(){
 
     if(maze_state !== "return"){
       if ((maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) || maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) - 1 || maze_id.charCodeAt(0) == old_maze_id.charCodeAt(0) + 1) && ( parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) || parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) - 1 || parseInt(maze_id.charAt(1)) == parseInt(old_maze_id.charAt(1)) + 1) && !((maze_id.charCodeAt(0) !== old_maze_id.charCodeAt(0)) && parseInt(maze_id.charAt(1)) !== parseInt(old_maze_id.charAt(1)))){
- 
+      
       }else{
         cheating = true
         console.log("cheating!")
         connection.publish("maze_state", "dead")
+
       }
      }
      old_maze_id = maze_id
@@ -549,5 +547,7 @@ function draw(){
     in_game_music.loop() 
     }
   }
+
+
 
 }
