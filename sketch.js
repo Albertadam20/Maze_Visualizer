@@ -22,6 +22,7 @@ let light_bulb_2
 let cheating_dialog, dead_dialog, reminder_dialog, start_dialog, winning_dialog, wall_dialog
 let cheating = false
 let dead_by_time = false
+let death_sound
 
 //let images = {}
 //let letters = ['A','B', 'C', 'D', 'E', 'F']
@@ -45,6 +46,7 @@ start_dialog = loadSound ("Sounds/start_dialog.mp3")
 wall_dialog = loadSound ("Sounds/wall_dialog.mp3")
 winning_dialog = loadSound ("Sounds/winning_dialog.mp3")
 
+death_sound = loadSound ("Sounds/death_sound.mp3")
 light_bulb_2 = loadSound ("Sounds/light_bulb_2.mp3")
 light_bulb = loadSound ("Sounds/light_bulb.mp3")
 theme_music = loadSound ("Sounds/theme.mp3")
@@ -150,6 +152,11 @@ function setup(){
     
     if(topic == "maze_state"){ 
       maze_state = ms.toString() 
+
+      if(maze_state == "return"){
+        death_sound.setVolume(0.5)
+        death_sound.play()
+      }
 
       if(maze_state == "return" && cheating == true){
         if(!cheating_dialog.isPlaying()){
@@ -563,7 +570,7 @@ function draw(){
     }
   }
   else if (maze_state == "start" || maze_ON_OFF == "OFF"){
-   //image(start_screen, 0, 0, 1280, 710)
+   image(start_screen, 0, 0, 1280, 710)
   }
   else{
    image(UI, -image_x, -image_y)
