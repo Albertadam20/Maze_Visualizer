@@ -140,17 +140,20 @@ function setup(){
       maze_state = ms.toString() 
 
       if(maze_state == "return" && cheating == true){
+        if(!cheating_dialog.isPlaying()){
         cheating_dialog.setVolume(0.8)
         cheating_dialog.play()
-
+        }
       }else if(maze_state == "return" && dead_by_time == true){
+        if(!dead_dialog.isPlaying()){
         dead_dialog.setVolume(0.8)
         dead_dialog.play()
-
+        }
       }else if(maze_state == "return"){
+        if(!wall_dialog.isPlaying()){
         wall_dialog.setVolume(0.8)
         wall_dialog.play()
-
+        }
       }
 
       switch (maze_state){
@@ -211,9 +214,10 @@ function timer(){
       console.log(time_tick_counter)
 
       if(time_tick_counter == 15){
+        if(!reminder_dialog.isPlaying()){
         reminder_dialog.setVolume(0.8)
         reminder_dialog.play()
-
+        }
       }
 
     }
@@ -495,8 +499,10 @@ function adjecent_tiles(){
         console.log("cheating!")
         connection.publish("maze_state", "dead")
 
-        cheating_dialog.setVolume(0.8)
-        cheating_dialog.play()
+        if (!cheating_dialog.isPlaying()){
+        //cheating_dialog.setVolume(0.8)
+        //cheating_dialog.play()
+        }
       }
      }
      old_maze_id = maze_id
