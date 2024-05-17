@@ -116,7 +116,7 @@ function setup(){
           dead_dialog.pause()
           reminder_dialog.pause()
           wall_dialog.pause()
-          winning_dialog.puase()
+          winning_dialog.pause()
         }
 
       } 
@@ -160,7 +160,7 @@ function setup(){
         reminder_dialog.pause()
         start_dialog.pause()
         wall_dialog.pause()
-        winning_dialog.puase()
+        winning_dialog.pause()
         }
       }else if(maze_state == "return" && dead_by_time == true){
         if(!dead_dialog.isPlaying()){
@@ -171,7 +171,7 @@ function setup(){
         reminder_dialog.pause()
         start_dialog.pause()
         wall_dialog.pause()
-        winning_dialog.puase()
+        winning_dialog.pause()
         }
       }else if(maze_state == "return"){
         if(!wall_dialog.isPlaying()){
@@ -182,7 +182,7 @@ function setup(){
         dead_dialog.pause()
         reminder_dialog.pause()
         start_dialog.pause()
-        winning_dialog.puase()
+        winning_dialog.pause()
         }
       }
 
@@ -263,7 +263,7 @@ function timer(){
         dead_dialog.pause()
         start_dialog.pause()
         wall_dialog.pause()
-        winning_dialog.puase()
+        winning_dialog.pause()
         }
       }
 
