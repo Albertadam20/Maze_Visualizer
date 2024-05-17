@@ -107,6 +107,12 @@ function setup(){
       console.log('Maze Started')  
       cheating = false
       dead_by_time = false 
+
+        if(!start_dialog.isPlaying()){
+          start_dialog.setVolume(0.8)
+          start_dialog.play()
+        }
+
       } 
     }
                                                          
