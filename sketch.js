@@ -83,7 +83,7 @@ function setup(){
   connection.on("message", (topic, ms) => {  
     
     if(topic == "light_bulb_2"){
-      light_bulb_2.setVolume(0.3)
+      light_bulb_2.setVolume(0.4)
       light_bulb_2.play()
 
     }
