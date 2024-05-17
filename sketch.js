@@ -518,12 +518,14 @@ function draw(){
 
   if (maze_ON_OFF == "OFF" || maze_state == "return"){
     if (!theme_music.isPlaying()){
-    theme_music.setVolume(0.3)
+    in_game_music.pause()
+    theme_music.setVolume(0.4)
     theme_music.loop()
     }
   }else{
     if (!in_game_music.isPlaying()){
-    in_game_music.setVolume(0.3)
+    theme_music.pause()
+    in_game_music.setVolume(0.5)
     in_game_music.loop() 
     }
   }
