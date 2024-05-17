@@ -576,7 +576,7 @@ function draw(){
    image(UI, -image_x, -image_y)
   }
 
-  if (maze_ON_OFF == "OFF" || maze_state == "return"){
+  if (maze_ON_OFF == "OFF" || maze_state == "start"){
     if (!theme_music.isPlaying()){
     in_game_music.pause()
     theme_music.setVolume(0.4)
