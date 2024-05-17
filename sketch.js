@@ -24,7 +24,13 @@ let cheating = false
 let dead_by_time = false
 let death_sound
 
+//let UI_1_1, UI_2_1, UI_3_1, UI_4_1, UI_5_1, UI_6_1
+//let UI_1_2, UI_2_2, UI_3_2, UI_4_2, UI_5_2, UI_6_2
+//let UI_1_3, UI_2_3, UI_3_3, UI_4_3, UI_5_3, UI_6_3
+//let UI_1_4, UI_2_4, UI_3_4, UI_4_4, UI_5_4, UI_6_4
+
 let UI
+
 let image_x = 6400
 let image_y = 3550
 let x = 1280
@@ -51,7 +57,7 @@ moving_sound = loadSound("Sounds/moving.mp3")
   death_screen = loadImage("UI/death_screen.png")
   start_screen = loadImage("UI/start_screen.png")
 
-  UI = loadImage ("UI/Maze_id_UI_config_1_row_6.jpg")
+  UI = loadImage ("UI/UI_row_6_config_1.jpg")
 
 }
 function setup(){   
